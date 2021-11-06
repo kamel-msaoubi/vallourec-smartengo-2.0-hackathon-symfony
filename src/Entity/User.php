@@ -91,16 +91,16 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'USER';
+        $roles = array_map(fn($value): string => "ROLE_" . strtoupper($value->getName()), $this->roles->getValues());
+        // guarantee every user at least has GUEST
+        $roles[] = 'GUEST';
 
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
-        $this->roles = $roles;
+        $this->roles = $roles->getValues();
 
         return $this;
     }
