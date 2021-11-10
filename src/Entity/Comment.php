@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Comment
 {
     /**
+     * @Groups({ "comment" })
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -19,16 +20,19 @@ class Comment
     private $id;
 
     /**
+     * @Groups({ "comment" })
      * @ORM\Column(type="text")
      */
     private $content;
 
     /**
+     * @Groups({ "comment" })
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Groups({ "comment" })
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
@@ -39,6 +43,7 @@ class Comment
     private $articles;
 
     /**
+     * @Groups({ "comment" })
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      */
     private $users;
