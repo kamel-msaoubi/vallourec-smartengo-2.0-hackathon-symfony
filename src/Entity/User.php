@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -16,6 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * @Groups({ "user" })
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -23,6 +25,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Groups({ "user" })
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
@@ -33,6 +36,7 @@ class User implements UserInterface
     private $comments;
 
     /**
+     * @Groups({ "user" })
      * @ORM\OneToMany(targetEntity=Reaction::class, mappedBy="users")
      */
     private $reactions;

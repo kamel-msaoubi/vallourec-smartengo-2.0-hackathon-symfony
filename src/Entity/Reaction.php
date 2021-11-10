@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReactionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ReactionRepository::class)
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Reaction
 {
     /**
+     * @Groups({ "reaction" })
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,16 +20,19 @@ class Reaction
     private $id;
 
     /**
+     * @Groups({ "reaction" })
      * @ORM\Column(type="string", length=255)
      */
     private $type;
 
     /**
+     * @Groups({ "reaction" })
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Groups({ "reaction" })
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
@@ -38,6 +43,7 @@ class Reaction
     private $articles;
 
     /**
+     * @Groups({ "user_detail" })
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reactions")
      */
     private $users;

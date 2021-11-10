@@ -73,6 +73,19 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
+        $request->attributes->set('roles', $token->getRoleNames());
+        $request->attributes->set('user', $token->getUser());
+
+        
+        $isAdmin = false;
+        $string = 'ROLE_ADMIN';
+        foreach ($token->getRoleNames() as $role) {
+            //if (strstr($string, $url)) { // mine version
+            if (strpos($string, $role) !== FALSE) { // Yoshi version
+                $isAdmin = true;
+            }
+        }
+        
         return;
     }
 

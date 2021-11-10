@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
+     * @Groups({ "article" })
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,36 +22,43 @@ class Article
     private $id;
 
     /**
+     * @Groups({ "article" })
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @Groups({ "article" })
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reference;
 
     /**
+     * @Groups({ "article" })
      * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
     /**
+     * @Groups({ "article" })
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $draft;
 
     /**
+     * @Groups({ "article" })
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Groups({ "article" })
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
 
     /**
+     * @Groups({ "article" })
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="articles")
      */
     private $tags;
@@ -65,6 +74,7 @@ class Article
     private $reactions;
 
     /**
+     * @Groups({ "article" })
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      */
     private $users;
