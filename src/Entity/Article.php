@@ -64,11 +64,13 @@ class Article
     private $tags;
 
     /**
+     * @Groups({ "article" })
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="articles")
      */
     private $comments;
 
     /**
+     * @Groups({ "article" })
      * @ORM\OneToMany(targetEntity=Reaction::class, mappedBy="articles")
      */
     private $reactions;
